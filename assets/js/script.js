@@ -20,7 +20,7 @@ var questions = [
   var questionIndex = 0;
   var correctCount = 0;
   
-  var time = 20;
+  var time = 60;
   var intervalId;
   
   function endQuiz() {
