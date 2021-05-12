@@ -24,6 +24,8 @@ var questions = [
     },
 ];
 
+//begin variables
+
 var questionEl = document.querySelector("#question");
 var optionListEl = document.querySelector("#option-list");
 var questionResultEl = document.querySelector("#question-result");
@@ -35,8 +37,24 @@ var correctCount = 0;
 var time = 60;
 var intervalId;
 
+//end variables
+
 // begin functions
 
+function startGame() {
+
+    // start button begin
+
+    var button = document.createElement("button");
+    button.innerHTML = "Start Quiz";
+
+    var body = document.getElementsByTagName("body")[0];
+    body.appendChild(button);
+
+    button.addEventListener("click", renderQuestion); 
+
+    //end start button
+}
 function endQuiz() {
     clearInterval(intervalId);
     var body = document.body;
@@ -73,6 +91,7 @@ function renderQuestion() {
         questionListItem.textContent = choices[i];
         optionListEl.append(questionListItem);
     }
+
 }
 
 function nextQuestion() {
@@ -101,20 +120,3 @@ function checkAnswer(event) {
 
 renderQuestion();
 optionListEl.addEventListener("click", checkAnswer);
-
-
-    // start button begin
-    var button = document.createElement("button");
-    button.innerHTML = "Start Quiz";
-    
-    
-    var body = document.getElementsByTagName("body")[0];
-    body.appendChild(button);
-    
-    
-    button.addEventListener ("click", function() {
-    time;
-    
-    });
-    
-    //end start button
