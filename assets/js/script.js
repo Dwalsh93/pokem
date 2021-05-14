@@ -37,24 +37,69 @@ var correctCount = 0;
 var time = 60;
 var intervalId;
 
-//end variables
 
-// begin functions
+// end variables
 
-function startGame() {
+function renderQuestion() {
+    // write code to generate questions
 
-    // start button begin
+    questionEl.textContent = questions[questionIndex].question;
+    optionListEl.innerHTML = "";
 
-    var button = document.createElement("button");
-    button.innerHTML = "Start Quiz";
-
-    var body = document.getElementsByTagName("body")[0];
-    body.appendChild(button);
-
-    button.addEventListener("click", renderQuestion); 
-
-    //end start button
+    for (var i = 0; i < questions[questionIndex].choices.length; i++) {
+        var liEl = document.createElement("li");
+        liEl.textContent = questions[questionIndex].choices[i];
+        optionListEl.append(liEl);
+    }
 }
+
+renderQuestion();
+
+document
+    .querySelector("#change-question")
+    .addEventListener("click", function () {
+        questionIndex++;
+        renderQuestion();
+    });
+
+function renderQuestion() {
+    questionEl.textContent = questions[questionIndex].question;
+
+    optionListEl.innerHTML = "";
+    questionResultEl.innerHTML = "";
+
+    var choices = questions[questionIndex].choices;
+    var choicesLenth = choices.length;
+
+    for (var i = 0; i < choicesLenth; i++) {
+        var questionListItem = document.createElement("li");
+        questionListItem.textContent = choices[i];
+        optionListEl.append(questionListItem);
+    }
+}
+
+function nextQuestion() {
+    questionIndex++;
+    renderQuestion();
+}
+
+function checkAnswer(event) {
+    if (event.target.matches("li")) {
+        var answer = event.target.textContent;
+        if (answer === questions[questionIndex].answer) {
+            questionResultEl.textContent = "Correct";
+            correctCount++;
+        } else {
+            questionResultEl.textContent = "Incorrect";
+        }
+    }
+    setTimeout(nextQuestion, 2000);
+}
+
+optionListEl.addEventListener("click", checkAnswer);
+
+renderQuestion();
+
 function endQuiz() {
     clearInterval(intervalId);
     var body = document.body;
@@ -91,7 +136,6 @@ function renderQuestion() {
         questionListItem.textContent = choices[i];
         optionListEl.append(questionListItem);
     }
-
 }
 
 function nextQuestion() {
@@ -120,3 +164,16 @@ function checkAnswer(event) {
 
 renderQuestion();
 optionListEl.addEventListener("click", checkAnswer);
+
+    // start button begin
+
+    var button = document.findelementbyid("startbtn");
+    button.innerHTML = "Start Quiz";
+
+    var body = document.getElementsByTagName("body")[0];
+    body.appendChild(button);
+    // button.addEventListener("click", findHidden());
+    button.addEventListener("click", timerEl());
+    button.addEventListener("click", renderQuestion());
+
+    //end start button
