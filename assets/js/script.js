@@ -64,9 +64,9 @@ var intervalId;
 
 function endQuiz() {
     contentEl.textContent = "";
-    // clearInterval(intervalId);
-    // var body = document.body;
-    // body.innerHTML = "Game over, You scored " + correctCount;
+    clearInterval(intervalId);
+    var body = document.body;
+    body.innerHTML = "Game over, You scored " + correctCount;
 
 }
 
@@ -81,11 +81,14 @@ function updateTime() {
 }
 
 function renderQuestion() {
+    button.remove();
+    h2.remove();
+    p.remove();
 
     intervalId = setInterval(updateTime, 1000);
 
     questionEl.textContent = questions[questionIndex].question;
-
+   
     optionListEl.innerHTML = "";
     questionResultEl.innerHTML = "";
 
@@ -103,15 +106,22 @@ function nextQuestion() {
     questionIndex++;
     if (questionIndex === questions.length) {
         time = 0;
+        endQuiz();
     }
     renderQuestion();
 }
+
 function startQuiz() {
     //h2
     h2 = document.createElement("h2");
-    h2.textContent = "Welcome";
+    h2.textContent = "So You Wanna Be A Master?";
     h2.classList.add("title-content");
     contentEl.appendChild(h2);
+    //p tag
+    p = document.createElement("p");
+    p.textContent = "So You Wanna Be A Master?";
+    p.classList.add("title-content");
+    contentEl.appendChild(p);
     //button
     button = document.createElement("button");
     button.textContent = "Start Game";
@@ -136,10 +146,6 @@ function checkAnswer(event) {
     }
     setTimeout(nextQuestion, 1000);
 }
-// create a local storage that connects to score = [] to save scores
-
-//   renderQuestion();
-//   startButton.addEventListener("click", startQuiz);
 
 startQuiz();
 
