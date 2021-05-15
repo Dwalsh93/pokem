@@ -1,14 +1,3 @@
-/* <--!header class >  */
-
-/* body class */
-/* hidden questions */
-
-/* .quizHidden{
-    display:none;
-} */
-
-.findHidden{
-    display:flex;
+.h2 {
+    background-color: burlywood;
 }
-
-/* footer class  */

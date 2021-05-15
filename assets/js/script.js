@@ -25,101 +25,62 @@ var questions = [
 ];
 
 //begin variables
-
+var contentEl = document.querySelector("#button-div");
 var questionEl = document.querySelector("#question");
 var optionListEl = document.querySelector("#option-list");
 var questionResultEl = document.querySelector("#question-result");
 var timerEl = document.querySelector("#timer");
-
 var questionIndex = 0;
 var correctCount = 0;
 
 var time = 60;
 var intervalId;
+// var startBtn;
 
+//end variables
 
-// end variables
+// // create start button
+// var button =
+//     document.createElement("button");
+// button.innerHTML = "Start Quiz";
 
-function renderQuestion() {
-    // write code to generate questions
+// var body = document.getElementsByTagName("body")
+// [0];
+// body.appendChild(button);
 
-    questionEl.textContent = questions[questionIndex].question;
-    optionListEl.innerHTML = "";
+// button.addEventListener("click", startGame);
 
-    for (var i = 0; i < questions[questionIndex].choices.length; i++) {
-        var liEl = document.createElement("li");
-        liEl.textContent = questions[questionIndex].choices[i];
-        optionListEl.append(liEl);
-    }
-}
+// create start game function 
 
-renderQuestion();
+// function startGame() {
+//     // call update time
+//     button.remove();
 
-document
-    .querySelector("#change-question")
-    .addEventListener("click", function () {
-        questionIndex++;
-        renderQuestion();
-    });
+//     timerEl.textContent = time;
+//     // updateTime();
+//     renderQuestion();
 
-function renderQuestion() {
-    questionEl.textContent = questions[questionIndex].question;
-
-    optionListEl.innerHTML = "";
-    questionResultEl.innerHTML = "";
-
-    var choices = questions[questionIndex].choices;
-    var choicesLenth = choices.length;
-
-    for (var i = 0; i < choicesLenth; i++) {
-        var questionListItem = document.createElement("li");
-        questionListItem.textContent = choices[i];
-        optionListEl.append(questionListItem);
-    }
-}
-
-function nextQuestion() {
-    questionIndex++;
-    renderQuestion();
-}
-
-function checkAnswer(event) {
-    if (event.target.matches("li")) {
-        var answer = event.target.textContent;
-        if (answer === questions[questionIndex].answer) {
-            questionResultEl.textContent = "Correct";
-            correctCount++;
-        } else {
-            questionResultEl.textContent = "Incorrect";
-        }
-    }
-    setTimeout(nextQuestion, 2000);
-}
-
-optionListEl.addEventListener("click", checkAnswer);
-
-renderQuestion();
+// };
 
 function endQuiz() {
-    clearInterval(intervalId);
-    var body = document.body;
-    body.innerHTML = "Game over, You scored " + correctCount;
+    contentEl.textContent = "";
+    // clearInterval(intervalId);
+    // var body = document.body;
+    // body.innerHTML = "Game over, You scored " + correctCount;
+
 }
 
 function updateTime() {
+    // if (time == 0) {
     time--;
     timerEl.textContent = time;
     if (time <= 0) {
         endQuiz();
     }
+    return;
 }
 
 function renderQuestion() {
-
-    if (time == 0) {
-        updateTime();
-        return;
-    }
 
     intervalId = setInterval(updateTime, 1000);
 
@@ -145,6 +106,20 @@ function nextQuestion() {
     }
     renderQuestion();
 }
+function startQuiz() {
+    //h2
+    h2 = document.createElement("h2");
+    h2.textContent = "Welcome";
+    h2.classList.add("title-content");
+    contentEl.appendChild(h2);
+    //button
+    button = document.createElement("button");
+    button.textContent = "Start Game";
+    button.setAttribute("id", "start-button");
+    contentEl.appendChild(button);
+
+    button.addEventListener("click", renderQuestion);
+}
 
 function checkAnswer(event) {
     clearInterval(intervalId);
@@ -159,21 +134,13 @@ function checkAnswer(event) {
             timerEl.textContent = time;
         }
     }
-    setTimeout(nextQuestion, 2000);
+    setTimeout(nextQuestion, 1000);
 }
+// create a local storage that connects to score = [] to save scores
 
-renderQuestion();
+//   renderQuestion();
+//   startButton.addEventListener("click", startQuiz);
+
+startQuiz();
+
 optionListEl.addEventListener("click", checkAnswer);
-
-    // start button begin
-
-    var button = document.findelementbyid("startbtn");
-    button.innerHTML = "Start Quiz";
-
-    var body = document.getElementsByTagName("body")[0];
-    body.appendChild(button);
-    // button.addEventListener("click", findHidden());
-    button.addEventListener("click", timerEl());
-    button.addEventListener("click", renderQuestion());
-
-    //end start button
