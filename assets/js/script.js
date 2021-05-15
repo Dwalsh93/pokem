@@ -68,6 +68,8 @@ function endQuiz() {
     var body = document.body;
     body.innerHTML = "Game over, You scored " + correctCount;
 
+    //going to add local storage ish here
+
 }
 
 function updateTime() {
@@ -119,7 +121,7 @@ function startQuiz() {
     contentEl.appendChild(h2);
     //p tag
     p = document.createElement("p");
-    p.textContent = "So You Wanna Be A Master?";
+    p.textContent = "Test your Pokemon knowledge with this 60 second, 4 question quiz! But be careful, each wrong answer deducts 2 seconds! Do you have what it takes to be a master?";
     p.classList.add("title-content");
     contentEl.appendChild(p);
     //button
