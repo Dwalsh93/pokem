@@ -1,3 +1,14 @@
 body {
-    background-color:firebrick;
+    background-color:white;
+    text-align: center;
 }
+
+h2 {
+    color:firebrick;
+}
+
+li {
+    list-style-type: none;
+    line-height: 22px;
+}
+

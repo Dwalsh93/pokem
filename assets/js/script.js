@@ -98,10 +98,18 @@ function renderQuestion() {
     var choicesLenth = choices.length;
 
     for (var i = 0; i < choicesLenth; i++) {
-        var questionListItem = document.createElement("li");
-        questionListItem.textContent = choices[i];
-        optionListEl.append(questionListItem);
-    }
+        // var questionListItem = document.createElement("li");
+        // questionListItem.textContent = choices[i];
+        // optionListEl.append(questionListItem);
+        if (choicesLenth > 0) {
+            var questionListItem = document.createElement("li");
+        
+            questionListItem.textContent = choices[i];
+            optionListEl.append(questionListItem);
+        } else {
+            //go to end quiz 
+        }
+    } 
 }
 
 function nextQuestion() {
@@ -149,6 +157,9 @@ function checkAnswer(event) {
     setTimeout(nextQuestion, 1000);
 }
 
+var highScore = function() {
+    localStorage.setItem("Initials",scores);
+}
 startQuiz();
 
 optionListEl.addEventListener("click", checkAnswer);
