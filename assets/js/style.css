@@ -1,14 +1,35 @@
 body {
     background-color:white;
     text-align: center;
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-h2 {
-    color:firebrick;
+#timer {
+font-size: 50px;
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
 }
 
 li {
     list-style-type: none;
     line-height: 22px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+
 }
 
+p.title-content {
+    color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:30px;
+}
+
+div#question.hidden {
+font-size: 20px;
+}
+
+img {
+    width: 700px;
+}

@@ -25,6 +25,7 @@ var questions = [
 ];
 
 //begin variables
+var scores = [];
 var contentEl = document.querySelector("#button-div");
 var questionEl = document.querySelector("#question");
 var optionListEl = document.querySelector("#option-list");
@@ -124,12 +125,12 @@ function nextQuestion() {
 function startQuiz() {
     //h2
     h2 = document.createElement("h2");
-    h2.textContent = "So You Wanna Be A Master?";
+    // h2.textContent = "So You Wanna Be A Master?";
     h2.classList.add("title-content");
     contentEl.appendChild(h2);
     //p tag
     p = document.createElement("p");
-    p.textContent = "Test your Pokemon knowledge with this 60 second, 4 question quiz! But be careful, each wrong answer deducts 2 seconds! Do you have what it takes to be a master?";
+    p.textContent = "Test your Pokemon knowledge with this 60 second, 4 question quiz! But be careful, each wrong answer deducts 10 seconds! Do you have what it takes to be a master?";
     p.classList.add("title-content");
     contentEl.appendChild(p);
     //button
@@ -150,7 +151,7 @@ function checkAnswer(event) {
             correctCount++;
         } else {
             questionResultEl.textContent = "Incorrect";
-            time = time - 2;
+            time = time - 10;
             timerEl.textContent = time;
         }
     }
@@ -158,7 +159,15 @@ function checkAnswer(event) {
 }
 
 var highScore = function() {
+    console.log();
     localStorage.setItem("Initials",scores);
+    var initialScoreObj={
+        initials: 'initials',
+        scores: 'scores'
+    }
+    scores.push({
+        initialScoreObj
+    });
 }
 startQuiz();
 
